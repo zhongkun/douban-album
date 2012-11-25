@@ -1,0 +1,12 @@
+<html>
+   <head>
+      <title>{{ title }}</title>
+   </head>
+   <body>
+     <ul>
+       {% for item in items %}
+       <img src="{{ escape(item.image)}}" />
+       {% end %}
+     </ul>
+   </body>
+ </html>
