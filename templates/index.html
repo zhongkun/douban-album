@@ -5,7 +5,7 @@
    <body>
      <ul>
        {% for item in items %}
-       <img src="{{ escape(item.image)}}" />
+       <img src="http://localhost:8080/proxy?url={{ escape(item['image'])}}" />
        {% end %}
      </ul>
    </body>

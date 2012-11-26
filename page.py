@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import tornado.web
 from consts import *
-from utils import*
-
+from utils import *
+from proxy import *
+import os
 class BaseHandler(tornado.web.RequestHandler):
     def get_current_user(self):
         return self.get_secure_cookie("album-token")
@@ -18,6 +19,15 @@ class LoginHandler(BaseHandler):
         else:
             self.redirect(auth())
 
+class ProxyHandler(BaseHandler):
+    def get(self):
+        url =  self.get_argument('url', None)
+
+        if url:
+            name = download_image(url, os.getcwd()+"/static/img/proxy/")
+            self.redirect('/static/img/proxy/'+name)
+            
+
 class IndexHandler(BaseHandler):
     @tornado.web.authenticated    
     def get(self):
@@ -28,5 +38,4 @@ class IndexHandler(BaseHandler):
         album = client.album.liked_list(client.user.me['id'])
 
         print album
-        self.write("Hello, " + name)
-        
+        self.render("templates/index.html", title = '豆瓣相册', items = album['albums'])
