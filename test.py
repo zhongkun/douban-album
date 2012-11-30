@@ -2,6 +2,8 @@
 import unittest
 from utils import * 
 from consts import *
+from proxy import *
+import os
 
 class TestModel(unittest.TestCase):
 
@@ -21,5 +23,9 @@ class TestModel(unittest.TestCase):
     def test_get_user(self):
         ret = client.user.me['id']
         print ret
+
+    def test_download_image(self):
+        download_image('http://img3.douban.com/view/photo/photo/public/p914472123.jpg',os.getcwd()+'/static/img/proxy/')
+
 if __name__ == "__main__":
     unittest.main()
