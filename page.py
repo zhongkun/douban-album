@@ -6,6 +6,7 @@ from proxy import *
 import os
 class BaseHandler(tornado.web.RequestHandler):
     def get_current_user(self):
+        print 'here is cookie:%s' % self.get_secure_cookie("album-token")
         return self.get_secure_cookie("album-token")
 
 class LoginHandler(BaseHandler):
@@ -15,7 +16,7 @@ class LoginHandler(BaseHandler):
         if code:
             auth_with_code(code)
             self.set_secure_cookie('album-token', get_token())
-            self.redirect('/')
+            self.redirect('/') 
         else:
             self.redirect(auth())
 
@@ -33,7 +34,7 @@ class IndexHandler(BaseHandler):
     def get(self):
         name = tornado.escape.xhtml_escape(self.current_user)
         client.auth_with_token(name)
-        print client.user.me
+        print 'album_user:%s' % name
 #        CLIENT.album.like_list
         album = client.album.liked_list(client.user.me['id'])
 
