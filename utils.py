@@ -3,7 +3,6 @@
 from consts import *
 
 def auth():
-    print dir(client)
     return client.authorize_url
 
 def auth_with_code(code):
