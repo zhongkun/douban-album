@@ -9,6 +9,7 @@ from mako.template import Template
 from mako.lookup import TemplateLookup
 class BaseHandler(tornado.web.RequestHandler):
 
+	
 	lookup = TemplateLookup(['./templates'])	
 	def render(self, template_name, **kwargs):
 		t = self.lookup.get_template(template_name)
