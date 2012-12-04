@@ -1,7 +1,11 @@
 *.pyc
+static/img/proxy/
+tags
 # C extensions
 *.so
 *.*~
+*.swap
+*.swp
 # Packages
 *.egg
 *.egg-info

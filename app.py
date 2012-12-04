@@ -1,5 +1,6 @@
 import tornado.ioloop
 import tornado.web
+import os
 from page  import *
         
 settings = {
@@ -11,6 +12,7 @@ application = tornado.web.Application([
     (r"/", IndexHandler),
     (r"/login", LoginHandler),
     (r"/proxy", ProxyHandler),
+	(r"/photos", PhotosHandler), 
     ], **settings)
 
 if __name__ == "__main__":
