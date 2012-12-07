@@ -10,6 +10,7 @@ settings = {
 }
 application = tornado.web.Application([
     (r"/", IndexHandler),
+    (r"/index", IndexHandler),
     (r"/login", LoginHandler),
     (r"/proxy", ProxyHandler),
 	(r"/photos", PhotosHandler), 

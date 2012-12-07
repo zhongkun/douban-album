@@ -88,14 +88,7 @@ footer, header, hgroup, menu, nav, section {
   display: block;
 }
 
-body {
-  padding: 20px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Arial, sans-serif;
-  font-size: 13px;
-  line-height: 1.7em;
-  background: #1F1E1D;
-  color: #FFF;
-}
+
 
 h1, h2, h3, p, ul, ol, pre, dl {
   margin-bottom: 1.0em;
@@ -160,7 +153,7 @@ body {
 }
 
 #container {
-  border: 1px solid #666;
+  /* border: 1px solid #666; */
   padding: 5px;
   margin-bottom: 20px;
 }
