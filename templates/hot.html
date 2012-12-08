@@ -15,42 +15,9 @@
 		<link rel="stylesheet" type="text/css" href="../static/css/douban.css" media="all" />
 		<title>${title}</title>
 </head>
-<body >
+<body >,
 
- <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="./index.html">豆瓣相册</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class="active">
-                <a href="./index.html">首页</a>
-              </li>
-              <li class="">
-                <a href="./getting-started.html">红人</a>
-              </li>
-              <li class="">
-                <a href="./scaffolding.html">发现</a>
-              </li>
-              <li class="">
-                <a href="./base-css.html">友邻</a>
-              </li>
-              <li class="">
-                <a href="./components.html">喜欢</a>
-              </li>
-              <li class="">
-                <a href="./javascript.html">自己的</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  <%include file="menu.html" />
   <div id="context">     
   <div id="container" class="album variable-sizes clearfix infinite-scrolling">
     
@@ -75,7 +42,7 @@
  </div> <!-- #container -->
   
   <nav id="page_nav">
-    <a href="../index?page=${page}"></a>
+    <a href="../star?page=${page}"></a>
   </nav>
 
   </div>

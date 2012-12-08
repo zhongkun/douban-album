@@ -48,13 +48,16 @@ class ProxyHandler(BaseHandler):
                 self.redirect('/static/img/proxy/'+name)
 
 class IndexHandler(BaseHandler):
+    def get(self):
+        self.render('index.html', title = u'豆瓣相册')
+
+class StarHandler(BaseHandler):
     @tornado.web.authenticated    
     def get(self):
         name = tornado.escape.xhtml_escape(self.current_user)
         client.auth_with_token(name)
         p = int(self.get_argument('page', 1))
         #album = client.album.liked_list(client.user.me['id'], 0, 30) 
-        
         count = 15
         uid = '3825598'
         start = count * (p-1)
@@ -64,7 +67,7 @@ class IndexHandler(BaseHandler):
         if not album:
             album = client.album.list('3825598', count * (p-1), count * p)
             mc.set(key, album, 3600)
-        self.render("hot.html", title = u'豆瓣相册', items = album['albums'], page = p+1)
+        self.render("hot.html", title = u'豆瓣相册', items = album['albums'], page = p+1, tab = 2)
 
 class PhotosHandler(BaseHandler):
     @tornado.web.authenticated    
