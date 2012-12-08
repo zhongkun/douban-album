@@ -6,6 +6,7 @@ from proxy import *
 import os
 import mako
 from mako.template import Template
+import urllib2
 from mako.lookup import TemplateLookup
 class BaseHandler(tornado.web.RequestHandler):
     lookup = TemplateLookup(['./templates'])	

@@ -16,7 +16,7 @@
 	<body style="background:#FFF">
 		<div id="container" class=" variable-sizes clearfix infinite-scrolling isotope">
 			% for item in items:
-			<div class="item other nonmental" style="width:240px; height:400px">
+			<div class="item other nonmental " style="width:240px; ">
 				<div class="item_img" style="width:225px; height:auto">
 					<img src="http://localhost:8080/proxy?url=${item['image']}" width="225px" >
 				</div>
@@ -37,8 +37,16 @@
 			$(function(){
 				var $container = $('#container');
 				$container.isotope({
+                   // resizable: false,
+                     //masonry: { columnWidth: $container.width() / 5 }
 					//itemSelector:'.element'
 				});
+
+                //$(window).smartresize(function(){
+                //    $container.isotope({
+                //        // update columnWidth to a percentage of container width
+                //        masonry: { columnWidth: $container.width() / 5 }
+                //});
 
 				$container.infinitescroll({
 					navSelector: '#page_nav',
