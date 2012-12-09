@@ -1,7 +1,8 @@
 
 .item{
-	padding-left:10px;
-	padding-right:10px;
+    margin-bottom: 15px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .item_info {
@@ -60,4 +61,14 @@ body {
   background-color: #ffffff;
   padding: 20px;
   background: #474747 url('../img/bg.png') repeat;
+}
+
+/* --------- 用户线程主页 ----------------*/
+
+.user-action{
+    margin-top:10px;
+}
+
+.user-info-ly{
+    margin-top:40px;
 }

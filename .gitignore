@@ -1,5 +1,6 @@
 *.pyc
 static/img/proxy/
+static/img/avatar_wall/
 tags
 # C extensions
 *.so
