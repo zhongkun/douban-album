@@ -37,7 +37,7 @@
 	height: 32px;
 }
 
-.album .photo{
+.photo{
     width:225px;
     overflow: hidden;
     float:left;
@@ -49,8 +49,7 @@
     width:1100px;
     text-align:center;
     margin:0 auto;
-    margin-bottom:30px;
-
+    margin-bottom:30px
 }
 
 body {
