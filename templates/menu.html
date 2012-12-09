@@ -23,7 +23,7 @@
               <li class,="">
 		% endif
 	
-                <a href="./getting-started.html">红人</a>
+                <a href="./star">红人</a>
               </li>
 
               <li class="">
@@ -32,12 +32,21 @@
               <li class="">
                 <a href="./base-css.html">友邻</a>
               </li>
+	      % if tab == 3:
+	      <li class="active">
+                <a href="#">喜欢</a>
+		% else:
               <li class="">
-                <a href="./components.html">喜欢</a>
+                <a href="./like">喜欢</a>
+		% endif 
               </li>
               <li class="">
                 <a href="./javascript.html">自己的</a>
               </li>
+	      <li class="">
+                <a href="./javascript.html">工具</a>
+              </li>
+
             </ul>
           </div>
         </div>
