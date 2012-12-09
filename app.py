@@ -18,6 +18,8 @@ application = tornado.web.Application([
 	(r"/photos", PhotosHandler), 
     (r"/user_album", UseAlbumHandler),
     (r"/friend_album", FriendsAlbumHandler), 
+    (r"/compound_avatar_pae", CompoundFollowAvatarHandler),
+    (r"/compound_picture", DoCompoundPictureHandler),
     ], **settings)
 
 if __name__ == "__main__":

@@ -7,7 +7,9 @@ import os
 import mako
 from mako.template import Template
 import urllib2
+import time
 from mako.lookup import TemplateLookup
+from avatar_wall import *
 
 class BaseHandler(tornado.web.RequestHandler):
     lookup = TemplateLookup(['./templates'])	
@@ -105,30 +107,38 @@ class PhotosHandler(BaseHandler):
 class UseAlbumHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
-        self.handler_auth()
+        login(self)
         user_id = self.get_argument('user_id', None)
 
 class FriendsAlbumHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
-        self.handler_auth()
+        login(self)
         user_id = self.get_argument('user_id', None)
 
 class CompoundFollowAvatarHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
-        self.handler_auth()
+        login(self)
         self.render('compound_picture')
 
 class DoCompoundPictureHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
-        self.handler_auth()
+        login(self)
         uid = self.get_argument('uid', None)       
         album_id = self.get_argument('album_id', None)
         if uid != None:
            user_list = client.user.following(uid, count = 400)
            print user_list
+           path = '%s/static/img/avatar_wall/%s/' % (os.getcwd(), uid) 
+           for item in user_list:
+              url = item['large_avatar'].replace('ul', 'u') 
+              if 'site' in url:
+                 continue
+              download_image(url, path)
+              time.sleep(1)
+           compound_avatar(path)
         elif album_id != None:
             photos_list = client.album.photos(album_id)
         else:
@@ -137,6 +147,5 @@ class DoCompoundPictureHandler(BaseHandler):
 def login(h):
     if not isLogin():
         name = eval(tornado.escape.xhtml_escape(h.current_user))
-        
         client.auth_with_token(name['token'])
 

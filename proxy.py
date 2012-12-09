@@ -24,7 +24,8 @@ header['Referer'] = 'http://www.douban.com'
 
 def download_image(url, path ):
     try:
-                        
+        print path
+        print url                
         sp = url.split('.')
         suffix = sp[len(sp)-1]
         if not os.path.exists(path):
