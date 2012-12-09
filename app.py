@@ -10,9 +10,12 @@ settings = {
 }
 application = tornado.web.Application([
     (r"/", IndexHandler),
+    (r"/index", IndexHandler),
     (r"/login", LoginHandler),
     (r"/proxy", ProxyHandler),
 	(r"/photos", PhotosHandler), 
+    (r"/user_album", UseAlbumHandler),
+    (r"/friend_album", FriendsAlbumHandler), 
     ], **settings)
 
 if __name__ == "__main__":

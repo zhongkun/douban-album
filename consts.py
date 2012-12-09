@@ -1,4 +1,5 @@
 from douban_client import DoubanClient
+import memcache
 
 DOUBAN_API_KEY = '0beb137ce048a99623c13a76a0d9fcc2'
 DOUBAN_API_SECRET = '0c4e47816f6a0a93'
@@ -6,3 +7,4 @@ DOUBAN_SCOPE = 'book_basic_r,book_basic_w,community_basic_note,community_basic_o
 DOUBAN_REDIRECT_URI = 'http://book.douban.com:8080/login'
 
 client = DoubanClient(DOUBAN_API_KEY, DOUBAN_API_SECRET, DOUBAN_REDIRECT_URI, DOUBAN_SCOPE)
+mc = memcache.Client(['127.0.0.1:12000'],debug=True)

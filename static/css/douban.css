@@ -6,14 +6,14 @@
 }
 
 .item_info {
-	width: 217px; 
+        width:225px;
 	height: 45px;
 	padding-left: 8px;
 	line-height: 45px;
-	font-size: 13px;
-	font-weight: bold;
+	font-size: 12px;
 	color: #44494B;
-	background-image: url('../img/item_info_bg.png');	
+	background: #1F1E1D;
+	/* background-image: url('../img/item_info_bg.png');	 */
 }
 
 .like_this{
@@ -35,4 +35,41 @@
 .savatar{
 	width: 32px;
 	height: 32px;
+}
+
+.album .photo{
+    width:225px;
+    overflow: hidden;
+    float:left;
+    margin:15px;
+    text-align:left;
+}
+
+#context{
+    width:1100px;
+    text-align:center;
+    margin:0 auto;
+    margin-bottom:30px;
+
+}
+
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333333;
+  background-color: #ffffff;
+  padding: 20px;
+  background: #474747 url('../img/bg.png') repeat;
+}
+
+/* --------- 用户线程主页 ----------------*/
+
+.user-action{
+    margin-top:10px;
+}
+
+.user-info-ly{
+    margin-top:40px;
 }

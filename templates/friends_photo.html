@@ -1,0 +1,137 @@
+# -*- coding: utf-8 -*-
+<!doctype html>
+<html lang="en">
+<head>
+  
+  <meta charset="utf-8" />
+  
+  <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+  <!-- scripts at bottom of page -->
+		<link rel="stylesheet" type="text/css" href="../static/css/style.css" media="all" />
+		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap-responsive.min.css" media="all" />
+		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" media="all" />
+		<link rel="stylesheet" type="text/css" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" media="all" />
+		<link rel="stylesheet" type="text/css" href="../static/css/douban.css" media="all" />
+		<title>${title}</title>
+</head>
+<body >
+
+ <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./index.html">豆瓣相册</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active">
+                <a href="./index.html">首页</a>
+              </li>
+              <li class="">
+                <a href="./getting-started.html">红人</a>
+              </li>
+              <li class="">
+                <a href="./scaffolding.html">发现</a>
+              </li>
+              <li class="">
+                <a href="./base-css.html">友邻</a>
+              </li>
+              <li class="">
+                <a href="./components.html">喜欢</a>
+              </li>
+              <li class="">
+                <a href="./javascript.html">自己的</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="container-fluid">
+      <div class="span3">
+          <div class="user-info-ly">
+              <img src="http://img3.douban.com/icon/ul38838117-2.jpg" style="width:110px">
+              <div class="user-info" style="float:right">
+                  常居:${user_info['loc_name']}
+                <br>
+                  ${user_info['name']}
+                <br>
+                  ${user_info['created']}加入 
+              </div>
+              <div class="user-action">
+                  <a href="#">关注此人</a>  
+                  <a href="http://www.douban.com/people/${user_info['id']}/">豆瓣主页</a>
+              </div>
+
+              <div class="user-dec">
+                   ${user_info['desc']}
+              </div>
+
+          </div> 
+      </div> 
+
+      <div class="span9">
+		<div id="container" class="variable-sizes clearfix infinite-scrolling isotope">
+            % for item in items:
+            <div class="album-item">
+                <div class="album-cover-img">
+                    <a href="#">
+                        <img src="http://img5.douban.com/view/photo/albumcover/public/p1060594879.jpg" alt="" />
+                    </a>
+                </div>   
+
+                <div>
+                    <a href="#">相册标题</a>
+                </div>
+                <div>
+                    125张照片 2012-02-10 更新  
+                </div>
+            </div>
+            % endfor
+        </div>
+      </div>
+  </div>
+
+  
+		<script type="text/javascript" src="../static/js/jquery-1.7.1.min.js"></script>	
+		<script type="text/javascript" src="../static/js/bootstrap.min.js"></script>	
+		<script type="text/javascript" src="../static/js/jquery.isotope.min.js"></script>	
+		<script type="text/javascript" src="../static/js/jquery.infinitescroll.min.js"></script>	
+
+  <script>
+    $(function(){
+
+      var $container = $('#container');
+    
+      $container.isotope({
+        itemSelector : '.photo'
+      });
+      
+      $container.infinitescroll({
+        navSelector  : '#page_nav',    // selector for the paged navigation 
+        nextSelector : '#page_nav a',  // selector for the NEXT link (to page 2)
+        itemSelector : '.photo',     // selector for all items you'll retrieve
+        loading: {
+            finishedMsg: 'No more pages to load.',
+            img: 'http://i.imgur.com/qkKy8.gif'
+          }
+        },
+        // call Isotope as a callback
+        function( newElements ) {
+          $container.isotope( 'appended', $( newElements ) ); 
+        }
+      );
+      
+    
+    });
+  </script>
+    
+
+  
+
+</body>
+</html>
+
