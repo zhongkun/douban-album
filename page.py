@@ -29,7 +29,7 @@ class BaseHandler(tornado.web.RequestHandler):
     def get_current_user(self):
         return self.get_secure_cookie("album-token")
 
-    def auth_with_token():
+    def handler_auth():
         name = tornado.escape.xhtml_escape(self.current_user)
         client.auth_with_token(name)
 
@@ -60,7 +60,7 @@ class IndexHandler(BaseHandler):
 class StarHandler(BaseHandler):
     @tornado.web.authenticated    
     def get(self):
-        self.auth_with_token()
+        self.handler_auth()
         p = int(self.get_argument('page', 1))
         #album = client.album.liked_list(client.user.me['id'], 0, 30) 
         count = 15
@@ -77,20 +77,39 @@ class StarHandler(BaseHandler):
 class PhotosHandler(BaseHandler):
     @tornado.web.authenticated    
     def get(self):
-        self.auth_with_token()
+        self.handler_auth()
         photos = client.album.photos('32349140')
         self.render("photos.html", title = u'相册', items = photos['photos'])
 
 class UseAlbumHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
-        self.auth_with_token()
+        self.handler_auth()
         user_id = self.get_argument('user_id', None)
 
 class FriendsAlbumHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
-        self.auth_with_token()
+        self.handler_auth()
         user_id = self.get_argument('user_id', None)
 
+class CompoundFollowAvatarHandler(BaseHandler):
+    @tornado.web.authenticated
+    def get(self):
+        self.handler_auth()
+        self.render('compound_picture')
+
+class DoCompoundPictureHandler(BaseHandler):
+    @tornado.web.authenticated
+    def get(self):
+        self.handler_auth()
+        uid = self.get_argument('uid', None)       
+        album_id = self.get_argument('album_id', None)
+        if uid != None:
+           user_list = client.user.following(uid, count = 400)
+           print user_list
+        elif album_id != None:
+            photos_list = client.album.photos(album_id)
+        else:
+            print 'input err'
 
