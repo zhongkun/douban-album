@@ -77,6 +77,7 @@ class StarHandler(BaseHandler):
         if not album:
             album = client.album.list('3825598', count * (p-1), count * p)
             mc.set(key, album, 3600)
+        print album
         self.render("hot.html", title = u'豆瓣相册', items = album['albums'], page = p+1, tab = 2)
 
 class LikeHandler(BaseHandler):
@@ -90,7 +91,7 @@ class LikeHandler(BaseHandler):
         end = count * p
         uid = user['userinfo']['id']
         key = ('like_%s_%s_%s' % (uid, start, end)).encode('utf8')
-        print key
+
         album = mc.get(str(key))
         if not album:
             album = client.album.liked_list(user['userinfo']['id'], start, end)
@@ -100,11 +101,26 @@ class LikeHandler(BaseHandler):
 class PhotosHandler(BaseHandler):
     @tornado.web.authenticated    
     def get(self):
-        self.handler_auth()
-        photos = client.album.photos('32349140')
-        self.render("photos.html", title = u'相册', items = photos['photos'])
+        login(self)
+        album_id = self.get_argument("aid", 0)
+        if int(album_id) == 0:
+            return
+        p = int(self.get_argument('page', 1))
+        count = 15
+        start = count * (p-1)
+        end = count * p
+        key = ('album_%s_%s_%s' % (album_id, start, end)).encode('utf8')
+        
+        photos = mc.get(key)
+        if not photos:
+            photos = client.album.photos(album_id)
+            mc.set(key, photos, 1800)
 
-class UseAlbumHandler(BaseHandler):
+        print photos
+        self.render("photos.html", title = u'相册', items = photos['photos'], page = 1,tab = 5, aid = album_id)
+
+
+class UserAlbumHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
         login(self)
@@ -129,7 +145,7 @@ class DoCompoundPictureHandler(BaseHandler):
         uid = self.get_argument('uid', None)       
         album_id = self.get_argument('album_id', None)
         if uid != None:
-           user_list = client.user.following(uid, count = 400)
+           user_list = client.user.following(uid, count = 100)
            print user_list
            path = '%s/static/img/avatar_wall/%s/' % (os.getcwd(), uid) 
            for item in user_list:

@@ -1,5 +1,4 @@
-# -*- coding:utf8 -*-
-
+# -*- coding: utf-8 -*-
 '''
     created: 2012-12-06
 
@@ -51,4 +50,4 @@ def compound_user_avatar(file_name):
 def download_user_avatar(user_list):
     pass          
 
-compound_avatar('/Users/6a209/dev/python/douban_hot_photo/douban-album/static/img/avatar_wall/android_209/')
+compound_avatar('/Users/kun/Desktop/avatar/')
