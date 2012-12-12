@@ -2,7 +2,7 @@ import tornado.ioloop
 import tornado.web
 import os
 from page  import *
-        
+
 settings = {
     "static_path": os.path.join(os.path.dirname(__file__), "static"),
     'cookie_secret' : '61oETzKXQAGaYdkL5gEmGeJJFuYh7JFAI398302JXzk/Vo=',
@@ -15,12 +15,12 @@ application = tornado.web.Application([
     (r"/login", LoginHandler),
     (r"/proxy", ProxyHandler),
     (r"/like", LikeHandler),
-	(r"/photos", PhotosHandler), 
+    (r"/photos", PhotosHandler),
     (r"/user_album", UseAlbumHandler),
-    (r"/friend_album", FriendsAlbumHandler), 
+    (r"/friend_album", FriendsAlbumHandler),
     (r"/compound_avatar_pae", CompoundFollowAvatarHandler),
     (r"/compound_picture", DoCompoundPictureHandler),
-    ], **settings)
+], **settings)
 
 if __name__ == "__main__":
     application.listen(8080)

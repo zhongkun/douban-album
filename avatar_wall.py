@@ -19,12 +19,12 @@ DEFAULT_ITEM_COUNT = 400
 
 
 def compound_avatar(file_name):
-    
+
     ''' 合并图片'''
     images = []
     item_width = 48
     item_height = 48
-    
+
     files = os.listdir(file_name)
     new_file = 'compound.jpg'
     for file in files:
@@ -37,7 +37,7 @@ def compound_avatar(file_name):
     new_image = Image.new('RGB', (DEFAULT_WIDTH, DEFAULT_HEIGHT), 0xffffff)
     for i in range(len(images)):
         image = images[i]
-        x = i % 20 
+        x = i % 20
         y = i / 20
         x = x * item_width
         y = y * item_height
@@ -46,9 +46,9 @@ def compound_avatar(file_name):
 
 def compound_user_avatar(file_name):
     file_list = os.listdir(file_name)
-    compound_avatar(file_list, '%s_compound' % file_name) 
+    compound_avatar(file_list, '%s_compound' % file_name)
 
 def download_user_avatar(user_list):
-    pass          
+    pass
 
 compound_avatar('/Users/6a209/dev/python/douban_hot_photo/douban-album/static/img/avatar_wall/android_209/')
