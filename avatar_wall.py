@@ -70,9 +70,9 @@ class CompoundPicture:
 
         # 不重复!
         while item == top_item \
-            and item == left_top_item \
-            and item == left_item \
-            and item == right_top_item:
+            or item == left_top_item \
+            or item == left_item \
+            or item == right_top_item:
             item = choice(image_list)
         return item
 
