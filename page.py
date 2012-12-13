@@ -12,7 +12,7 @@ from mako.lookup import TemplateLookup
 from avatar_wall import *
 
 class BaseHandler(tornado.web.RequestHandler):
-    lookup = TemplateLookup(['./templates'])	
+    lookup = TemplateLookup(['./templates'])
     def render(self, template_name, **kwargs):
         t = self.lookup.get_template(template_name)
         args = dict(
@@ -34,7 +34,7 @@ class BaseHandler(tornado.web.RequestHandler):
     def handler_auth():
         name = tornado.escape.xhtml_escape(self.current_user)
         client.auth_with_token(name)
-    
+
 class LoginHandler(BaseHandler):
     def get(self):
         code = self.get_argument('code', None)
@@ -63,11 +63,11 @@ class IndexHandler(BaseHandler):
         self.render('index.html', title = u'豆瓣相册')
 
 class StarHandler(BaseHandler):
-    @tornado.web.authenticated    
+    @tornado.web.authenticated
     def get(self):
         login(self)
         p = int(self.get_argument('page', 1))
-        #album = client.album.liked_list(client.user.me['id'], 0, 30) 
+        #album = client.album.liked_list(client.user.me['id'], 0, 30)
         count = 15
         uid = '3825598'
         start = count * (p-1)
@@ -99,7 +99,7 @@ class LikeHandler(BaseHandler):
         self.render('like.html', title = u'豆瓣相册', items = album['albums'], page = p+1, tab = 3)
 
 class PhotosHandler(BaseHandler):
-    @tornado.web.authenticated    
+    @tornado.web.authenticated
     def get(self):
         login(self)
         album_id = self.get_argument("aid", 0)
@@ -110,7 +110,7 @@ class PhotosHandler(BaseHandler):
         start = count * (p-1)
         end = count * p
         key = ('album_%s_%s_%s' % (album_id, start, end)).encode('utf8')
-        
+
         photos = mc.get(key)
         if not photos:
             photos = client.album.photos(album_id)
@@ -136,20 +136,21 @@ class CompoundFollowAvatarHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
         login(self)
-        self.render('compound_picture')
+        name = eval(tornado.escape.xhtml_escape(self.current_user))
+        self.render('compound_picture.html', title = u'合成用户头像', uid = name['userinfo']['uid'])
 
 class DoCompoundPictureHandler(BaseHandler):
     @tornado.web.authenticated
-    def get(self):
+    def post(self):
         login(self)
-        uid = self.get_argument('uid', None)       
+        uid = self.get_argument('uid', None)
         album_id = self.get_argument('album_id', None)
         if uid != None:
            user_list = client.user.following(uid, count = 100)
            print user_list
-           path = '%s/static/img/avatar_wall/%s/' % (os.getcwd(), uid) 
+           path = '%s/static/img/avatar_wall/%s/' % (os.getcwd(), uid)
            for item in user_list:
-              url = item['large_avatar'].replace('ul', 'u') 
+              url = item['large_avatar'].replace('ul', 'u')
               if 'site' in url:
                  continue
               download_image(url, path)
