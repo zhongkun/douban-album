@@ -44,8 +44,7 @@ class CompoundPicture:
         new_image.save(file_name + new_file, quality = 70)
 
     def compound_user_avatar(self, file_name):
-        file_list = os.listdir(file_name)
-        self.compound_avatar(file_list, '%s_compound' % file_name)
+        self.compound_avatar(file_name)
 
     def download_user_avatar(user_list):
         pass
