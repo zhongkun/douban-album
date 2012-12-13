@@ -16,9 +16,9 @@ application = tornado.web.Application([
     (r"/proxy", ProxyHandler),
     (r"/like", LikeHandler),
     (r"/photos", PhotosHandler),
-    (r"/user_album", UseAlbumHandler),
+    (r"/people", UserAlbumHandler),
     (r"/friend_album", FriendsAlbumHandler),
-    (r"/compound_avatar_pae", CompoundFollowAvatarHandler),
+    (r"/compound_avatar_page", CompoundFollowAvatarHandler),
     (r"/compound_picture", DoCompoundPictureHandler),
 ], **settings)
 

@@ -49,7 +49,6 @@
     width:1100px;
     text-align:center;
     margin:0 auto;
-    margin-bottom:30px
 }
 
 body {
@@ -60,6 +59,7 @@ body {
   color: #333333;
   background-color: #ffffff;
   padding: 20px;
+  padding-top:50px;
   background: #474747 url('../img/bg.png') repeat;
 }
 

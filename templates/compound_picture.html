@@ -19,8 +19,11 @@
   <div class="compound-bg">
     <div class="container">
         <div id="box">
-            <h2>生成你关注好友的头像墙</h2>
-            <button class="btn"> 开始生成</button>
+            <form action="compound_picture" method="post">
+                <h2>生成你关注好友的头像墙</h2>
+                <input type="hidden" name="uid" value=${uid} />
+                <button class="btn" > 开始生成</button>
+            </form>
         </div>     
     </div> 
   </div>

@@ -1,26 +1,18 @@
-#-*- coding:utf-8 -*-
-<!DOCTYPE HTML> 
-<html>
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<link rel="stylesheet" type="text/css" href="../static/css/style.css" media="all" />
-		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap-responsive.min.css" media="all" />
-		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" media="all" />
-		<link rel="stylesheet" type="text/css" href="../static/css/douban.css" media="all" />
-		<script type="text/javascript" src="../static/js/bootstrap.min.js"></script>	
-		<script type="text/javascript" src="../static/js/jquery-1.7.1.min.js"></script>	
-		<script type="text/javascript" src="../static/js/jquery.infinitescroll.min.js"></script>	
-		<script type="text/javascript" src="../static/js/jquery.isotope.min.js"></script>	
-		<title>${title}</title>
-	</head>
-	<body style="background:#FFF">
-		<div id="container" class=" variable-sizes clearfix infinite-scrolling isotope">
-			% for item in items:
-			<div class="item other nonmental " style="width:240px; ">
-				<div class="item_img" style="width:225px; height:auto">
-					<img src="http://localhost:8080/proxy?url=${item['image']}" width="225px" >
-				</div>
-				<div class="item_title" style="width:225px; height:45px; ">
+# -*- coding: utf-8 -*-
+<!doctype html>
+<html lang="en">
+<head>
+  <%include file="style.html" />
+</head>
+<body >
+
+  <%include file="menu.html" />
+  <div id="context">     
+  <div id="container" class="album variable-sizes clearfix infinite-scrolling">
+    			% for item in items:
+			<div class="photo" >
+					<img src="http://localhost:8080/proxy?url=${item['image']}" / >
+				<div class="item_title" >
 					<p>${item['desc']}</p>
 				</div>
 				<div class="item_info" >
@@ -32,37 +24,63 @@
 				</div>
 			</div>	
 			% endfor
-		</div>
-		<script>
-			$(function(){
-				var $container = $('#container');
-				$container.isotope({
-                   // resizable: false,
-                     //masonry: { columnWidth: $container.width() / 5 }
-					//itemSelector:'.element'
-				});
 
-                //$(window).smartresize(function(){
-                //    $container.isotope({
-                //        // update columnWidth to a percentage of container width
-                //        masonry: { columnWidth: $container.width() / 5 }
-                //});
+    <!-- % for item in items: -->
+    <!-- 	  <div class="photo"> -->
+    <!-- 	          <a href="p/{{ am.aid }}" title="{{ am.name}}"><img src="http://localhost:8080/proxy?url=${item['image']}" alt="${item['author']['name']}" /></a> -->
+    <!-- 	  				<div class="item_info" > -->
+    <!-- 					<img class="savatar" src="http://localhost:8080/proxy?url=${item['author']['avatar']}"> -->
+    <!-- 					${item['author']['name']} -->
+    <!-- 					<span class="like"> -->
+    <!-- 						<a class="like_this" href="#">${item['liked_count']}</a> -->
+    <!-- 					</span> -->
+    <!-- 				</div> -->
 
-				$container.infinitescroll({
-					navSelector: '#page_nav',
-					nextSelector: '#page_nav a',
-					itemSelector: '.element', 
-					loading:{
-						finishedMsg: 'No more pages to load.', 
-						img: 'http://i.imgur.com/qkKy8.gif'
-					}
-				}, 
-				function(newElements){
-					$container.isotope('append', $(newElements));
-				}
-				);
-			});
-		</script>
-	</body>
-</html>
+    <!-- 	  </div> -->
+
+
+
+    <!-- % endfor -->
+          
+
+ </div> <!-- #container -->
+  
+  <nav id="page_nav">
+    <a href="../photos?aid=${aid}&page=${page}"></a>
+  </nav>
+
+  </div>
+
+  <script>
+    $(function(){
+
+      var $container = $('#container');
+    
+      $container.imagesLoaded(function(){
+         $container.isotope({
+        itemSelector : '.photo'
+      });
+    });
+      
+      $container.infinitescroll({
+        navSelector  : '#page_nav',    // selector for the paged navigation 
+        nextSelector : '#page_nav a',  // selector for the NEXT link (to page 2)
+        itemSelector : '.photo',     // selector for all items you'll retrieve
+        loading: {
+            finishedMsg: 'No more pages to load.',
+            img: 'http://i.imgur.com/qkKy8.gif'
+          }
+        },
+        // call Isotope as a callback
+        function( newElements ) {
+          $container.isotope( 'appended', $( newElements ) ); 
+        }
+      );
+      
+    
+    });
+  </Script>
+
+</Body>
+</Html>
 
