@@ -13,6 +13,7 @@ from avatar_wall import *
 
 class BaseHandler(tornado.web.RequestHandler):
     lookup = TemplateLookup(['./templates'])
+
     def render(self, template_name, **kwargs):
         t = self.lookup.get_template(template_name)
         args = dict(
@@ -34,6 +35,7 @@ class BaseHandler(tornado.web.RequestHandler):
     def handler_auth():
         name = tornado.escape.xhtml_escape(self.current_user)
         client.auth_with_token(name)
+
 
 class LoginHandler(BaseHandler):
     def get(self):
@@ -161,8 +163,8 @@ class DoCompoundPictureHandler(BaseHandler):
         else:
             print 'input err'
 
-def login(h):
+def login(s):
     if not isLogin():
-        name = eval(tornado.escape.xhtml_escape(h.current_user))
+        name = eval(tornado.escape.xhtml_escape(s.current_user))
         client.auth_with_token(name['token'])
 
