@@ -157,7 +157,8 @@ class DoCompoundPictureHandler(BaseHandler):
                  continue
               download_image(url, path)
               time.sleep(1)
-           compound_avatar(path)
+           compound = CompoundPicture()
+           compound.compound_user_avatar(path)
         elif album_id != None:
             photos_list = client.album.photos(album_id)
         else:
