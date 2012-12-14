@@ -11,10 +11,10 @@
   <div id="container" class="album variable-sizes clearfix infinite-scrolling">
     
     % for item in items:
-	  <div class="photo">
-	          <a href="/photos?aid=${item['id'] }" title="${item['title']}"><img src="http://localhost:8080/proxy?url=${item['image']}" alt="${item['author']['name']}" /></a>
+    <div class="photo" style="height:${item['sizes']['image'][1] * 225 / item['sizes']['image'][0] + 45}px">
+        <a href="/photos?aid=${item['id'] }" title="${item['title']}"><img src="http://localhost:8080/proxy?url=${item['image']}" alt="${item['author']['name']}" /></a>
 	  				<div class="item_info" >
-					<img class="savatar" src="http://localhost:8080/proxy?url=${item['author']['avatar']}">
+					<img class="savatar"  src="http://localhost:8080/proxy?url=${item['author']['avatar']}">
 					${item['author']['name']}
 					<span class="like">
 						<a class="like_this" href="#">${item['liked_count']}</a>
