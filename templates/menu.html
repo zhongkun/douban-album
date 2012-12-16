@@ -42,8 +42,8 @@
 
             <ul class="nav pull-right">
 	      <li id="fat-menu" class="dropdown">
-		  <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">${handler.current_user}<b class="caret"></b>
-		  <img src="#" height="28" width="28"/></a>
+		  <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">${handler.user['userinfo']['name']}<b class="caret"></b>
+		  <img class="dropdown-toggle" src="${handler.user['userinfo']['avatar']}" height="24" width="24"/></a>
 
                       <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
                         <li><a tabindex="-1" href="#">相册</a></li>
