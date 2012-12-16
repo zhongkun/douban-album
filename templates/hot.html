@@ -12,7 +12,7 @@
     
     % for item in items:
     <div class="photo" style="height:${item['sizes']['image'][1] * 225 / item['sizes']['image'][0] + 45}px">
-        <a href="/photos?aid=${item['id'] }" title="${item['title']}"><img src="http://localhost:8080/proxy?url=${item['image']}" alt="${item['author']['name']}" /></a>
+        <a href="/photos?aid=${item['id'] }" title="${item['title']}"><img class="item_img" src="http://localhost:8080/proxy?url=${item['image']}" alt="${item['author']['name']}" /></a>
 	  				<div class="item_info" >
 					<img class="savatar"  src="http://localhost:8080/proxy?url=${item['author']['avatar']}">
 					${item['author']['name']}
@@ -56,9 +56,22 @@
           $container.isotope( 'appended', $( newElements ) ); 
         }
       );
-      
-    
+          
     });
+
+    <!-- var spinner = Spinners.create('.item_img', { -->
+    <!-- radius: 25, -->
+    <!-- height: 10, -->
+    <!-- width: 2.5, -->
+    <!-- dashes: 15, -->
+    <!-- opacity: 1, -->
+    <!-- padding: 3, -->
+    <!-- rotation: 700, -->
+    <!-- color: '#000000' -->
+    <!-- }).play(); -->
+
+    <!-- spinner.center(); -->
+
   </script>
     
 

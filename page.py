@@ -13,6 +13,7 @@ from avatar_wall import *
 
 class BaseHandler(tornado.web.RequestHandler):
     lookup = TemplateLookup(['./templates'])
+
     def render(self, template_name, **kwargs):
         t = self.lookup.get_template(template_name)
         args = dict(
@@ -31,9 +32,7 @@ class BaseHandler(tornado.web.RequestHandler):
     def get_current_user(self):
         return self.get_secure_cookie("album-user")
 
-    def handler_auth():
-        name = tornado.escape.xhtml_escape(self.current_user)
-        client.auth_with_token(name)
+
 
 class LoginHandler(BaseHandler):
     def get(self):
@@ -66,6 +65,7 @@ class StarHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
         login(self)
+
         p = int(self.get_argument('page', 1))
         #album = client.album.liked_list(client.user.me['id'], 0, 30)
         count = 15
@@ -156,15 +156,16 @@ class DoCompoundPictureHandler(BaseHandler):
                  continue
               download_image(url, path)
               time.sleep(1)
-           compound = CompoundPicture()
-           compound.compound_user_avatar(path)
+           compound_avatar(path)
         elif album_id != None:
             photos_list = client.album.photos(album_id)
         else:
             print 'input err'
 
-def login(h):
+def login(s):
     if not isLogin():
-        name = eval(tornado.escape.xhtml_escape(h.current_user))
+        name = eval(tornado.escape.xhtml_escape(s.current_user))
+        s.user = name
+        print name
         client.auth_with_token(name['token'])
 

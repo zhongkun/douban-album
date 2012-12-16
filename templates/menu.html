@@ -9,14 +9,6 @@
           <a class="brand" href="./index.html">豆瓣相册</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-	      % if tab == 1:
-              <li class="active">
-		% else:
-              <li class="">
-		% endif
-                <a href="./">首页</a>
-              </li>
-	      
 	      % if tab == 2:
               <li class="active">
 	      % else:
@@ -27,10 +19,10 @@
               </li>
 
               <li class="">
-                <a href="./scaffolding.html">发现</a>
+                <a href="#">发现</a>
               </li>
               <li class="">
-                <a href="./base-css.html">友邻</a>
+                <a href="#">友邻</a>
               </li>
 	      % if tab == 3:
 	      <li class="active">
@@ -40,14 +32,30 @@
                 <a href="./like">喜欢</a>
 		% endif 
               </li>
-              <li class="">
-                <a href="./javascript.html">自己的</a>
+	      <li class="">
+                <a href="#">订阅</a>
               </li>
 	      <li class="">
-                <a href="./javascript.html">工具</a>
+                <a href="#">工具</a>
               </li>
-
             </ul>
+
+            <ul class="nav pull-right">
+	      <li id="fat-menu" class="dropdown">
+		  <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">${handler.user['userinfo']['name']}<b class="caret"></b>
+		  <img class="dropdown-toggle" src="${handler.user['userinfo']['avatar']}" height="24" width="24"/></a>
+
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        <li><a tabindex="-1" href="#">相册</a></li>
+                        <li><a tabindex="-1" href="#">喜欢</a></li>
+                        <li><a tabindex="-1" href="#">统计</a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" href="#">帐户</a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" href="#">退出</a></li>
+		</li>
+	    </ul>
+
           </div>
         </div>
       </div>
