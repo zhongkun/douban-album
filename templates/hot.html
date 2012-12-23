@@ -1,82 +1,84 @@
 # -*- coding: utf-8 -*-
 <!doctype html>
 <html lang="en">
-<head>
-  <%include file="style.html" />
+    <head>
+        <%include file="style.html" />
 </head>
 <body >
 
-  <%include file="menu.html" />
-  <div id="context">     
-  <div id="container" class="album variable-sizes clearfix infinite-scrolling">
-    
-    % for item in items:
-    <div class="photo" style="height:${item['sizes']['image'][1] * 225 / item['sizes']['image'][0] + 45}px">
-        <a href="/photos?aid=${item['id'] }" title="${item['title']}"><img class="item_img" src="http://localhost:8080/proxy?url=${item['image']}" alt="${item['author']['name']}" /></a>
-	  				<div class="item_info" >
-					<img class="savatar"  src="http://localhost:8080/proxy?url=${item['author']['avatar']}">
-					${item['author']['name']}
-					<span class="like">
-						<a class="like_this" href="#">${item['liked_count']}</a>
-					</span>
-				</div>
+    <%include file="menu.html" />
+<div id="context">     
+    <div id="container" class="album variable-sizes clearfix infinite-scrolling">
 
-	  </div>
-    % endfor
- </div> <!-- #container -->
-  
-  <nav id="page_nav">
-    <a href="../star?page=${page}"></a>
-  </nav>
+        % for item in items:
+        <div class="photo" style="height:${item['sizes']['image'][1] * 225 / item['sizes']['image'][0] + 45}px">
+            <a class="image_zoom" href="/photos?aid=${item['id'] }" title="${item['title']}">
+                <img class=""  src="http://localhost:8080/proxy?url=${item['image']}" alt="${item['author']['name']}" />
+            </a>
+            <div class="item_info" >
+                <img class="savatar"  src="http://localhost:8080/proxy?url=${item['author']['avatar']}">
+                    ${item['author']['name']}
+                    <span class="like">
+                        <a class="like_this" href="#">${item['liked_count']}</a>
+                    </span>
+                </div>
 
-  </div>
+            </div>
+            % endfor
+        </div> <!-- #container -->
 
-  <script>
-    $(function(){
+        <nav id="page_nav">
+            <a href="../star?page=${page}"></a>
+        </nav>
 
-      var $container = $('#container');
-    
-      $container.imagesLoaded(function(){
-         $container.isotope({
-        itemSelector : '.photo'
-      });
-    });
-      
-      $container.infinitescroll({
-        navSelector  : '#page_nav',    // selector for the paged navigation 
-        nextSelector : '#page_nav a',  // selector for the NEXT link (to page 2)
-        itemSelector : '.photo',     // selector for all items you'll retrieve
-        loading: {
-            finishedMsg: 'No more pages to load.',
-            img: 'http://i.imgur.com/qkKy8.gif'
-          }
-        },
-        // call Isotope as a callback
-        function( newElements ) {
-          $container.isotope( 'appended', $( newElements ) ); 
-        }
-      );
-          
-    });
+    </div>
 
-    <!-- var spinner = Spinners.create('.item_img', { -->
-    <!-- radius: 25, -->
-    <!-- height: 10, -->
-    <!-- width: 2.5, -->
-    <!-- dashes: 15, -->
-    <!-- opacity: 1, -->
-    <!-- padding: 3, -->
-    <!-- rotation: 700, -->
-    <!-- color: '#000000' -->
-    <!-- }).play(); -->
+    <script>
+        $(function(){
+            $('.image_zoom').hoverZoom({
+            });
 
-    <!-- spinner.center(); -->
+            var $container = $('#container');
 
-  </script>
-    
+            $container.imagesLoaded(function(){
+                $container.isotope({
+                        itemSelector : '.photo'
+                });
+            });
 
-  
+            $container.infinitescroll({
+                    navSelector  : '#page_nav',    // selector for the paged navigation 
+                    nextSelector : '#page_nav a',  // selector for the NEXT link (to page 2)
+                    itemSelector : '.photo',     // selector for all items you'll retrieve
+                    loading: {
+                        finishedMsg: 'No more pages to load.',
+                        img: 'http://i.imgur.com/qkKy8.gif'
+                    }
+            },
+            // call Isotope as a callback
+            function( newElements ) {
+                $container.isotope( 'appended', $( newElements ) ); 
+            }
+            );
 
-</body>
-</html>
+        });
+
+        <!-- var spinner = Spinners.create('.item_img', { -->
+                <!-- radius: 25, -->
+                <!-- height: 10, -->
+                <!-- width: 2.5, -->
+                <!-- dashes: 15, -->
+                <!-- opacity: 1, -->
+                <!-- padding: 3, -->
+                <!-- rotation: 700, -->
+                <!-- color: '#000000' -->
+                <!-- }).play(); -->
+
+        <!-- spinner.center(); -->
+
+            </script>
+
+
+        </body>
+    </html>
 

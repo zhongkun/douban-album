@@ -126,6 +126,7 @@ class UserAlbumHandler(BaseHandler):
         login(self)
         user_id = self.get_argument('user_id', None)
         album_list = client.album.list(user_id)
+        user_info = album_list[0]['author']
 
 class FriendsAlbumHandler(BaseHandler):
     @tornado.web.authenticated
