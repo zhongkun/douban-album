@@ -76,22 +76,27 @@
       <div class="span9">
 		<div id="container" class="variable-sizes clearfix infinite-scrolling isotope">
             % for item in items:
-            <div class="album-item">
-                <div class="album-cover-img">
+            <div class="album_item" style="height:${item['sizes']['cover'][1] * 225 / item['sizes']['cover'][0] + 45}px">
+                <div class="album_cover_img">
                     <a href="#">
-                        <img src="http://img5.douban.com/view/photo/albumcover/public/p1060594879.jpg" alt="" />
+                        <img src="http://localhost:8080/proxy?url=${item['cover']}" alt="" />
                     </a>
                 </div>   
 
                 <div>
-                    <a href="#">相册标题</a>
+                    <a href="#">${item['title']}</a>
                 </div>
-                <div>
-                    125张照片 2012-02-10 更新  
+                <div class="album_desc">
+                    ${item['size']}张照片 ${item['updated']}更新  
                 </div>
             </div>
             % endfor
         </div>
+        
+        <nav id ="page_nae"> 
+            <a href="#"></a>
+        </nav>
+
       </div>
   </div>
 
