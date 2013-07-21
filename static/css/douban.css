@@ -6,7 +6,7 @@
 }
 
 .item_info {
-        width:225px;
+    width:225px;
 	height: 45px;
 	padding-left: 8px;
 	line-height: 45px;
@@ -45,11 +45,21 @@
     text-align:left;
 }
 
+.image_zoom {
+    width: 225px;
+    max-width: none;
+}
+.image_zoom img{
+    width: 225px;
+    max-width: none;
+}
+
 #context{
     width:1100px;
     text-align:center;
     margin:0 auto;
 }
+
 
 body {
   margin: 0;
